@@ -26,7 +26,7 @@ angular.module('agileMetrics').controller 'usController', ($scope, elasticsearch
         'Old Skull':
             fields: [
                 'needsrefinement'
-                'refined'
+                'todo'
                 'developing'
                 'totest'
                 'undersystemtest'
