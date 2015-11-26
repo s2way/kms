@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Agile Metrics</title>
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/css/angular-toastr.css" />
+
+    <style type="text/css">
+        .label-us {
+            background-color: #4d93ff;
+        }
+        .label-bug {
+            background-color: #ff3333;
+        }
+        .label-refactoring {
+            background-color: #ff9900;
+        }
+        .label-infra {
+            background-color: #2d862d;
+        }
+        .label-spike {
+            background-color: #ff1ac6;
+        }
+        .label-technical_debit {
+            background-color: #ffff33;
+        }
+        .label-timed {
+            background-color: #ac7339;
+        }
+        .label-feature {
+            background-color: #E2F5A3;
+        }
+    </style>
+</head>
+
+<body ng-app="agileMetrics">
+  <div ng-controller="usController" class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Kanban Metrics</a>
+        <div class="navbar-header pull-right">
+        <ul class="nav navbar-nav">
+        <div class="form-group" style="padding-top:13px">
+            <select class="form-control" ng-model="selectedTeam" ng-change="changeSelectedTeam(selectedTeam)">
+                <option ng-repeat="(name, team) in teams">{{name}}</option>
+            </select>
+        </div>
+      </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="pull-right">
+                <button class="btn btn-primary" ng-click="addTaskForm=!addTaskForm">Add task</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default" ng-show="addTaskForm">
+                <div class="panel-body">
+                  <form class="form-horizontal" ng-submit="createTask(newTask)">
+                    <div class="form-group" ng-repeat="field in headers">
+                        <label class="col-sm-3 control-label">{{field}}</label>
+                        <div class="col-sm-9">
+                            <select ng-init="newTask[field] = 'US'" ng-if="field == 'role'" class="form-control" ng-model="newTask[field]">
+                                <option ng-repeat="role in roles">{{role}}</option>
+                            </select>
+                            <select ng-init="newTask[field] = 'DEFAULT'" ng-if="field == 'class'" class="form-control" ng-model="newTask[field]">
+                                <option ng-repeat="class in classes">{{class}}</option>
+                            </select>
+                            <input ng-if="field != 'role' && field != 'class'" class="form-control" ng-model="newTask[field]"/>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="field in teams[selectedTeam].fields">
+                        <label class="col-sm-3 control-label">{{field}}</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" ng-model="newTask[field]" mask="39/19/99 29:59" inputdates/>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-success" type="submit">Finish him</button>
+                        <button class="btn btn-danger" type="button" ng-click="close()">Close</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <table class="table table-striped" show-filter="true">
+        <tr>
+            <th ng-repeat="header in headers">{{header}}</th>
+            <th>actions</th>
+        </tr>
+        <tr ng-repeat="task in tasks">
+            <td ng-repeat="field in headers" ng-switch="value.format">
+                <span ng-if="field == 'role'" ng-class="labels[task._source[field]]">{{task._source[field]}}</span>
+                <span ng-if="field != 'role'">{{task._source[field]}}</span>
+            </td>
+            <td>
+                <button class="btn btn-warning" ng-click="editTask(task._source)">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="deleteTask(task._id)">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/elasticsearch.js"></script>
+    <script src="js/controllers/us.js"></script>
+    <script src="vendor/js/ngMask.js"></script>
+    <script src="vendor/js/angular-toastr.tpls.js"></script>
+    <script src="vendor/js/angular-cookies.min.js"></script>
+    <script src="vendor/js/moment.js"></script>
+</body>
+</html>
