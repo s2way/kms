@@ -63,16 +63,12 @@
                 <div class="panel-body">
                   <form class="form-horizontal" ng-submit="createTask(newTask)">
                     <div class="form-group" ng-repeat="field in headers">
-                        <label ng-if="field == 'costumer'" class="col-sm-3 control-label">city</label>
-                        <label ng-if="field != 'costumer'" class="col-sm-3 control-label">{{field}}</label>
+                        <label class="col-sm-3 control-label">{{field}}</label>
                         <div class="col-sm-9">
-                            <select ng-init="newTask[field] = 'US'" ng-if="field == 'role'" class="form-control" ng-model="newTask[field]">
-                                <option ng-repeat="role in roles">{{role}}</option>
+                            <select ng-init="newTask[field] = lists[field][0]" ng-if="field != 'id' && field != 'release'" class="form-control" ng-model="newTask[field]">
+                                <option ng-repeat="item in lists[field]">{{item}}</option>
                             </select>
-                            <select ng-init="newTask[field] = 'DEFAULT'" ng-if="field == 'class'" class="form-control" ng-model="newTask[field]">
-                                <option ng-repeat="class in classes">{{class}}</option>
-                            </select>
-                            <input ng-if="field != 'role' && field != 'class'" class="form-control" ng-model="newTask[field]"/>
+                            <input ng-if="field == 'id' || field == 'release'" class="form-control" ng-model="newTask[field]"/>
                         </div>
                     </div>
                     <div class="form-group" ng-repeat="field in teams[selectedTeam].fields">

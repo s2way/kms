@@ -28,11 +28,16 @@
         fields: []
       }
     };
-    $scope.headers = ['id', 'role', 'estimated', 'costumer', 'release', 'class'];
+    $scope.headers = ['id', 'role', 'estimated', 'city', 'release', 'class', 'project'];
     $scope.newTask = {};
     $scope.tasks = [];
-    $scope.roles = ['US', 'BUG', 'REFACTORING', 'INFRA', 'SPIKE', 'TECHNICAL_DEBT', 'TIMED', 'FEATURE'];
-    $scope.classes = ['DEFAULT', 'EXPEDITE', 'SELF-EXPIRING'];
+    $scope.lists = {
+      role: ['US', 'BUG', 'REFACTORING', 'INFRA', 'SPIKE', 'TECHNICAL_DEBT', 'TIMED', 'FEATURE'],
+      estimated: ['P', 'M', 'G'],
+      costumer: ['All', 'Camboriú', 'Coronel Fabriciano', 'Florianópolis', 'Itabuna', 'Lajeado', 'Panambi', 'Rondonópolis', 'Santa Cruz', 'São Borja', 'Ubatuba'],
+      "class": ['DEFAULT', 'EXPEDITE', 'SELF-EXPIRING'],
+      project: ['Auth', 'Parking', 'Parking - APP', 'Parking - Privado', 'Pay', 'Reports', 'Sensor', 'Wallet']
+    };
     $scope.labels = {
       US: 'label label label-us',
       BUG: 'label label-bug',
