@@ -22,7 +22,7 @@
         fields: ['todo', 'developing', 'totest', 'testing', 'readyfordeploy', 'deploying', 'done']
       },
       'Old Skull': {
-        fields: ['needsrefinement', 'refined', 'developing', 'totest', 'undersystemtest', 'readyfordeploy', 'partiallydeployed', 'done']
+        fields: ['needsrefinement', 'todo', 'developing', 'totest', 'undersystemtest', 'readyfordeploy', 'partiallydeployed', 'done']
       },
       'HardwÆrwolves': {
         fields: []
@@ -55,7 +55,8 @@
         query: {
           sort: {
             id: 'desc'
-          }
+          },
+          size: 1000
         }
       };
       return elasticsearch.post(findTasksConfig).success(function(response, statusCode) {

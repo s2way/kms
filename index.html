@@ -63,7 +63,8 @@
                 <div class="panel-body">
                   <form class="form-horizontal" ng-submit="createTask(newTask)">
                     <div class="form-group" ng-repeat="field in headers">
-                        <label class="col-sm-3 control-label">{{field}}</label>
+                        <label ng-if="field == 'costumer'" class="col-sm-3 control-label">city</label>
+                        <label ng-if="field != 'costumer'" class="col-sm-3 control-label">{{field}}</label>
                         <div class="col-sm-9">
                             <select ng-init="newTask[field] = 'US'" ng-if="field == 'role'" class="form-control" ng-model="newTask[field]">
                                 <option ng-repeat="role in roles">{{role}}</option>

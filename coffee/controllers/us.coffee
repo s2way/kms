@@ -71,6 +71,7 @@ angular.module('agileMetrics').controller 'usController', ($scope, elasticsearch
             query:
                 sort:
                     id: 'desc'
+                size: 1000
         elasticsearch.post(findTasksConfig)
             .success((response, statusCode) ->
                 if response? and statusCode is 200
