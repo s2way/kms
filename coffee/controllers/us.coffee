@@ -52,7 +52,7 @@ angular.module('agileMetrics').controller 'usController', ($scope, elasticsearch
     $scope.lists =
         role: ['US', 'BUG', 'REFACTORING', 'INFRA', 'SPIKE', 'TECHNICAL_DEBT', 'TIMED', 'FEATURE']
         estimated: ['P', 'M', 'G']
-        costumer: ['All', 'Camboriú', 'Coronel Fabriciano', 'Florianópolis', 'Itabuna', 'Lajeado', 'Panambi', 'Rondonópolis', 'Santa Cruz', 'São Borja', 'Ubatuba']
+        city: ['All', 'Camboriú', 'Coronel Fabriciano', 'Florianópolis', 'Itabuna', 'Lajeado', 'Panambi', 'Rondonópolis', 'Santa Cruz', 'São Borja', 'Ubatuba']
         class: ['DEFAULT', 'EXPEDITE', 'SELF-EXPIRING']
         project: ['Auth', 'Parking', 'Parking - APP', 'Parking - Privado', 'Pay', 'Reports', 'Sensor', 'Wallet']
 
