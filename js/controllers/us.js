@@ -15,7 +15,7 @@
 
   angular.module('agileMetrics').controller('usController', function($scope, elasticsearch, $interval, $filter, toastr, $cookies) {
     var formatDatetimes, indexPath;
-    indexPath = 'http://10.40.48.48:9200/kanban';
+    indexPath = 'http://10.11.25.5:9200/kanban';
     $scope.selectedTeam = $cookies.get('team') || 'Newborns';
     $scope.teams = {
       'Newborns': {
